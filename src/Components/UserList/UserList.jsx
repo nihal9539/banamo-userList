@@ -17,7 +17,7 @@ import Typography from '@mui/material/Typography';
 import { FadeLoader } from 'react-spinners';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import {BiErrorCircle} from "react-icons/bi"
+import { BiErrorCircle } from "react-icons/bi"
 
 const drawerWidth = 240;
 
@@ -37,17 +37,17 @@ function UserList(props) {
             setUserData(res.data)
             setLoading(false)
         }).catch((err) => {
-          
+
             setLoading(false)
             setError({ status: true, message: err.message })
 
         })
     }, [])
-   
+
     const handleClick = (e) => {
         setuser(e)
         setMobileOpen(!mobileOpen);
-     
+
     }
     if (Loading) {
         return (
@@ -89,7 +89,7 @@ function UserList(props) {
                 <Typography >
                     Users
                 </Typography>
-                </Toolbar>
+            </Toolbar>
             <Divider />
 
             {/* user list */}
@@ -180,10 +180,19 @@ function UserList(props) {
 
                 {user.length !== 0 ?
                     <div className=' w-100 vh-100 row justify-content-md-center  px-5  align-items-center' >
-                        <div className='border h-50 w-50 border-black p-2 '>
-                            <img src={user.avatar} className='rounded w-100 h-100' alt="No image" />
-                        </div>
-                        <div className=' d-flex fs-5 flex-column gap-4'>
+                   
+                            <Box
+                                component="img"
+                                sx={{
+                                    height: 350,
+                                    width: 350,
+                                    maxHeight: { xs: 450, md: 350 },
+                                    maxWidth: { xs: 450, md: 350 },
+                                }}
+                                alt="No Image "
+                                src={user.avatar}
+                            />
+                        <div className=' d-flex fs-5  flex-column gap-4'>
                             <Typography className='fs-4 fw-bold'>
                                 <label >Name: </label>
                                 <span className=''> {user?.profile?.firstName} {user?.profile?.lastName}</span>
